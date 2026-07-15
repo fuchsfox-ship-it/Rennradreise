@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rennradreise Zürich – San Bernardino – Lugano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --accent: #e94560;
+            --accent-light: #ff6b6b;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --surface: #ffffff;
+            --surface-alt: #f8f9fa;
+            --text: #2d3436;
+            --text-muted: #636e72;
+            --border: #e9ecef;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+            --radius: 16px;
+            --radius-sm: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--surface);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        .nav-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(233,69,96,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(102,126,234,0.15) 0%, transparent 50%);
+            animation: heroFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-2%, 2%) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-light), var(--gradient-start));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-stat {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius);
+            padding: 1.5rem 1rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: rgba(255,255,255,0.4);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            border-radius: 50px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Timeline / Route */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end), var(--accent));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 1.8rem;
+            width: 14px;
+            height: 14px;
+            background: var(--gradient-start);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px rgba(102,126,234,0.2);
+        }
+
+        .timeline-item .time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--gradient-start);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Day Cards */
+        .day-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+
+        .day-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .day-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .day-card-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .day-card-header.day2 {
+            background: linear-gradient(135deg, var(--accent), #c0392b);
+        }
+
+        .day-card-header .day-num {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+        }
+
+        .day-card-header h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0.25rem 0;
+        }
+
+        .day-card-header .day-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .day-card-body {
+            padding: 2rem;
+        }
+
+        .waypoint-list {
+            list-style: none;
+        }
+
+        .waypoint-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .waypoint-list li:last-child {
+            border-bottom: none;
+        }
+
+        .waypoint-km {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--gradient-start);
+            font-weight: 500;
+            min-width: 55px;
+            padding-top: 2px;
+        }
+
+        .waypoint-info h5 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .waypoint-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Pass Profile */
+        .pass-section {
+            background: var(--surface-alt);
+        }
+
+        .pass-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pass-visual {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #0f3460);
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .pass-visual svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+        }
+
+        .pass-altitude {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .pass-altitude .alt-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 800;
+        }
+
+        .pass-altitude .alt-label {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .pass-details {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pass-detail-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--surface-alt);
+            border-radius: var(--radius-sm);
+        }
+
+        .pass-detail-item .value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .pass-detail-item .label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* Hotels */
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .hotel-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .hotel-card.recommended {
+            border-color: var(--gradient-start);
+            border-width: 2px;
+        }
+
+        .hotel-card.recommended::after {
+            content: 'Empfohlen';
+            position: absolute;
+            top: -10px;
+            right: 16px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hotel-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-card .hotel-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .hotel-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hotel-tag {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .hotel-tag.price {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-color: #c8e6c9;
+        }
+
+        .hotel-tag.rating {
+            background: #fff3e0;
+            color: #e65100;
+            border-color: #ffe0b2;
+        }
+
+        .hotel-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+        }
+
+        .btn-secondary {
+            background: var(--surface-alt);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        /* Schedule */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .schedule-day {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .schedule-day-header {
+            padding: 1.25rem 1.5rem;
+            background: var(--surface-alt);
+            border-bottom: 1px solid var(--border);
+            font-weight: 700;
+        }
+
+        .schedule-entry {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+
+        .schedule-entry:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gradient-start);
+            min-width: 50px;
+        }
+
+        .schedule-desc {
+            font-size: 0.9rem;
+        }
+
+        /* Tips */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+        }
+
+        .tip-card .tip-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tip-card h4 {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        footer a:hover {
+            color: var(--accent-light);
+        }
+
+        footer p {
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .day-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 2.5rem;
+            }
+
+            section {
+                padding: 4rem 1.25rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-brand">Rennradreise 2026</div>
+    <ul class="nav-links">
+        <li><a href="#overview">Route</a></li>
+        <li><a href="#tag1">Tag 1</a></li>
+        <li><a href="#pass">Pass</a></li>
+        <li><a href="#tag2">Tag 2</a></li>
+        <li><a href="#hotels">Hotels</a></li>
+        <li><a href="#zeitplan">Zeitplan</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">5. – 7. August 2026</div>
+        <h1>Zürich <span>San Bernardino</span> Lugano</h1>
+        <p class="hero-subtitle">Rennradabenteuer über die Alpen – 2 Tage, 1 Pass, unendliche Aussichten</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">295</div>
+                <div class="hero-stat-label">Kilometer</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">4.000</div>
+                <div class="hero-stat-label">Höhenmeter</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">2.065</div>
+                <div class="hero-stat-label">Meter Passhöhe</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">2</div>
+                <div class="hero-stat-label">Etappen</div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </div>
+</section>
+
+<!-- Overview -->
+<section id="overview">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-tag">Route</div>
+            <h2>Die Gesamtstrecke</h2>
+            <p>Von der Limmat an den Lago di Lugano – quer durch die Schweizer Alpen</p>
+        </div>
+        <div class="day-cards fade-in">
+            <div class="day-card">
+                <div class="day-card-header">
+                    <div class="day-num">Tag 1 – 05. August</div>
+                    <h3>Zürich nach Thusis</h3>
+                    <div class="day-meta">
+                        <span>~125 km</span>
+                        <span>~1.400 Hm</span>
+                        <span>5–6 h Fahrzeit</span>
+                        <span>Mittel</span>
+                    </div>
+                </div>
+                <div class="day-card-body">
+                    <ul class="waypoint-list">
+                        <li>
+                            <span class="waypoint-km">0 km</span>
+                            <div class="waypoint-info">
+                                <h5>Zürich HB</h5>
+                                <p>Start 11:00 Uhr, Stadtausfahrt via Thalwil</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">38 km</span>
+                            <div class="waypoint-info">
+                                <h5>Rapperswil</h5>
+                                <p>Mittagspause, Altstadt, Seequai</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">58 km</span>
+                            <div class="waypoint-info">
+                                <h5>Weesen</h5>
+                                <p>Walensee-Eingang, spektakuläre Felswände</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">78 km</span>
+                            <div class="waypoint-info">
+                                <h5>Sargans</h5>
+                                <p>Burg Sargans, kurze Pause</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">108 km</span>
+                            <div class="waypoint-info">
+                                <h5>Chur</h5>
+                                <p>Hauptstadt Graubünden, Kaffeepause</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">125 km</span>
+                            <div class="waypoint-info">
+                                <h5>Thusis</h5>
+                                <p>Ziel Tag 1, Viamala-Schlucht, Hotel Viamala</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-card-header day2">
+                    <div class="day-num">Tag 2 – 06. August</div>
+                    <h3>Thusis nach Lugano</h3>
+                    <div class="day-meta">
+                        <span>~165 km</span>
+                        <span>~2.500 Hm</span>
+                        <span>7–9 h Fahrzeit</span>
+                        <span>Sehr schwer</span>
+                    </div>
+                </div>
+                <div class="day-card-body">
+                    <ul class="waypoint-list">
+                        <li>
+                            <span class="waypoint-km">0 km</span>
+                            <div class="waypoint-info">
+                                <h5>Thusis</h5>
+                                <p>Frühstart 07:00 Uhr</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">38 km</span>
+                            <div class="waypoint-info">
+                                <h5>Splügen</h5>
+                                <p>Letzte Versorgung vor Pass – Pflichtpause!</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">65 km</span>
+                            <div class="waypoint-info">
+                                <h5>San-Bernardino-Pass</h5>
+                                <p>Gipfel 2.065 m, Restaurant, Bergsee</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">95 km</span>
+                            <div class="waypoint-info">
+                                <h5>Mesocco</h5>
+                                <p>Burgruine, Coop, Tessin beginnt</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">130 km</span>
+                            <div class="waypoint-info">
+                                <h5>Bellinzona</h5>
+                                <p>UNESCO-Burgen, Mittagspause</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="waypoint-km">165 km</span>
+                            <div class="waypoint-info">
+                                <h5>Lugano</h5>
+                                <p>Ziel! Lago di Lugano, Hotel Pestalozzi</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Tag 1 Detail -->
+<section id="tag1" class="pass-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-tag">Tag 1</div>
+            <h2>Zürich – Thusis</h2>
+            <p>Entlang von Zürichsee, Walensee und Rheintal ins Herz Graubündens</p>
+        </div>
+        <div class="tips-grid fade-in">
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #e3f2fd;">&#x1F6E3;</div>
+                <h4>Streckencharakter</h4>
+                <p>Überwiegend gut ausgebaute Kantonsstraßen. Radwege entlang Zürichsee und Walensee. Moderate Steigungen.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #fff3e0;">&#x26A0;</div>
+                <h4>Kritische Abschnitte</h4>
+                <p>Stadtausfahrt Zürich: Nebenstraßen bevorzugen. Walenseestraße oft befahren, aber Radstreifen vorhanden.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #e8f5e9;">&#x1F34E;</div>
+                <h4>Verpflegung</h4>
+                <p>Rapperswil, Bad Ragaz, Chur – überall Migros, Coop, Restaurants. In Thusis: Coop und Gasthäuser.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #fce4ec;">&#x1F3AF;</div>
+                <h4>Highlights</h4>
+                <p>Zürichsee-Uferstraße, Rapperswil Altstadt, Walensee-Panorama, Chur Altstadt, Viamala-Schlucht.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pass -->
+<section id="pass">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-tag">Königsetappe</div>
+            <h2>San-Bernardino-Pass</h2>
+            <p>Das Herzstück der Tour – 2.065 Meter über dem Meer</p>
+        </div>
+        <div class="pass-card fade-in">
+            <div class="pass-visual">
+                <svg viewBox="0 0 800 120" preserveAspectRatio="none">
+                    <path d="M0,120 L0,100 C100,95 150,80 200,70 C280,55 350,30 400,10 C450,30 520,55 580,65 C650,78 720,95 800,100 L800,120 Z" fill="rgba(102,126,234,0.3)"/>
+                    <path d="M0,120 L0,110 C100,105 200,90 300,80 C350,75 380,40 400,20 C420,40 450,75 500,80 C600,90 700,105 800,110 L800,120 Z" fill="rgba(233,69,96,0.2)"/>
+                </svg>
+                <div class="pass-altitude">
+                    <div class="alt-value">2.065 m</div>
+                    <div class="alt-label">Passhöhe ü.M.</div>
+                </div>
+            </div>
+            <div class="pass-details">
+                <div class="pass-detail-item">
+                    <div class="value">25 km</div>
+                    <div class="label">Anstieg ab Splügen</div>
+                </div>
+                <div class="pass-detail-item">
+                    <div class="value">1.200 Hm</div>
+                    <div class="label">Höhenmeter Anstieg</div>
+                </div>
+                <div class="pass-detail-item">
+                    <div class="value">4,5–5%</div>
+                    <div class="label">Durchschnitt</div>
+                </div>
+                <div class="pass-detail-item">
+                    <div class="value">max 9%</div>
+                    <div class="label">Steilste Rampen</div>
+                </div>
+                <div class="pass-detail-item">
+                    <div class="value">60 km</div>
+                    <div class="label">Abfahrt bis Bellinzona</div>
+                </div>
+                <div class="pass-detail-item">
+                    <div class="value">Jun–Okt</div>
+                    <div class="label">Saison offen</div>
+                </div>
+            </div>
+        </div>
+        <div style="max-width: 900px; margin: 2rem auto 0; padding: 1.25rem 1.5rem; background: #fff3e0; border-radius: var(--radius-sm); border-left: 4px solid #ff9800;" class="fade-in">
+            <strong>Wichtig:</strong> Der San-Bernardino-Straßentunnel (6,6 km) ist für Radfahrer gesperrt. Die Passstraße (Route 13) ist die korrekte Rennradroute. Verkehr moderat – Großteil nutzt den Tunnel.
+        </div>
+    </div>
+</section>
+
+<!-- Tag 2 -->
+<section id="tag2" class="pass-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-tag">Tag 2</div>
+            <h2>Thusis – Lugano</h2>
+            <p>Über den Pass ins Tessin – die Königsetappe mit 2.500 Höhenmetern</p>
+        </div>
+        <div class="tips-grid fade-in">
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #ede7f6;">&#x1F305;</div>
+                <h4>Frühstart empfohlen</h4>
+                <p>Abfahrt 07:00 Uhr – wenig Verkehr und kühle Temperaturen am Pass. Passgipfel ideal gegen 11:00 Uhr.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #e3f2fd;">&#x1F4A7;</div>
+                <h4>Versorgung am Pass</h4>
+                <p>Splügen ist der letzte Stopp mit Supermarkt. Auf dem Gipfel: Restaurant "Hotel Brocco e Posta".</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #fff3e0;">&#x1F321;</div>
+                <h4>Temperaturwechsel</h4>
+                <p>Auf 2.065 m kann es auch im August kühl sein. Ab Bellinzona Richtung Lugano: bis zu 30°C+.</p>
+            </div>
+            <div class="tip-card">
+                <div class="tip-icon" style="background: #fce4ec;">&#x26A1;</div>
+                <h4>Abfahrt: Vorsicht!</h4>
+                <p>60 km Abfahrt bis Bellinzona – hohe Geschwindigkeiten, kurvige Straße. Auf Straßenschäden achten.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hotels -->
+<section id="hotels">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-tag">Unterkünfte</div>
+            <h2>Hotels</h2>
+            <p>Empfohlene Unterkünfte für beide Nächte – rennradfreundlich und gut gelegen</p>
+        </div>
+
+        <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 700;" class="fade-in">Nacht 1 – Thusis (05./06.08.)</h3>
+        <div class="hotel-grid fade-in" style="margin-bottom: 4rem;">
+            <div class="hotel-card recommended">
+                <h4>Hotel Viamala</h4>
+                <div class="hotel-location">Thusis, Graubünden</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">90–120 CHF</span>
+                    <span class="hotel-tag rating">8.2/10</span>
+                    <span class="hotel-tag">Fahrrad: Keller/Garage</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/searchresults.de.html?ss=Thusis&checkin=2026-08-05&checkout=2026-08-06&group_adults=1&no_rooms=1" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=Hotel+Viamala+Thusis" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <h4>Gasthaus Römerhof</h4>
+                <div class="hotel-location">Thusis, Graubünden</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">80–100 CHF</span>
+                    <span class="hotel-tag rating">7.8/10</span>
+                    <span class="hotel-tag">Fahrrad: Schuppen</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/searchresults.de.html?ss=Thusis&checkin=2026-08-05&checkout=2026-08-06&group_adults=1&no_rooms=1" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=Gasthaus+Römerhof+Thusis" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <h4>Hotel Freieck</h4>
+                <div class="hotel-location">Chur (Alternative)</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">110–140 CHF</span>
+                    <span class="hotel-tag rating">8.5/10</span>
+                    <span class="hotel-tag">Fahrradraum</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/searchresults.de.html?ss=Chur&checkin=2026-08-05&checkout=2026-08-06&group_adults=1&no_rooms=1" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=Hotel+Freieck+Chur" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; font-weight: 700;" class="fade-in">Nacht 2 – Lugano (06./07.08.)</h3>
+        <div class="hotel-grid fade-in">
+            <div class="hotel-card recommended">
+                <h4>Hotel Pestalozzi</h4>
+                <div class="hotel-location">Piazza Indipendenza 9, Lugano</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">100–130 CHF</span>
+                    <span class="hotel-tag rating">8.4/10</span>
+                    <span class="hotel-tag">200 m zum See</span>
+                    <span class="hotel-tag">Fahrrad: Keller</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/hotel/ch/pestalozzi-lugano.de.html" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=Hotel+Pestalozzi+Lugano" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <h4>Hotel Federale</h4>
+                <div class="hotel-location">Via Paolo Regazzoni 8, Lugano</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">110–140 CHF</span>
+                    <span class="hotel-tag rating">8.2/10</span>
+                    <span class="hotel-tag">400 m zum See</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/hotel/ch/federale-lugano.de.html" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=Hotel+Federale+Lugano" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <h4>Hotel Lugano Dante</h4>
+                <div class="hotel-location">Piazza Cioccaro 5, Lugano</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">130–155 CHF</span>
+                    <span class="hotel-tag rating">8.6/10</span>
+                    <span class="hotel-tag">150 m zum See</span>
+                    <span class="hotel-tag">Abstellraum</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/hotel/ch/lugano-dante.de.html" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=Hotel+Lugano+Dante" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+            <div class="hotel-card">
+                <h4>B&B Hotel Lugano</h4>
+                <div class="hotel-location">Lungolago Casimiro 3, Lugano</div>
+                <div class="hotel-meta">
+                    <span class="hotel-tag price">85–115 CHF</span>
+                    <span class="hotel-tag rating">8.0/10</span>
+                    <span class="hotel-tag">50 m zum See!</span>
+                    <span class="hotel-tag">Frühstück inkl.</span>
+                </div>
+                <div class="hotel-actions">
+                    <a href="https://www.booking.com/searchresults.de.html?ss=B%26B+Hotel+Lugano" target="_blank" class="btn btn-primary">Booking.com</a>
+                    <a href="https://maps.google.com/?q=B%26B+Hotel+Lugano" target="_blank" class="btn btn-secondary">Maps</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Zeitplan -->
+<section id="zeitplan" class="pass-section">
+    <div class="container">
+        <div class="section-header fade-in">
+            <div class="section-tag">Timing</div>
+            <h2>Zeitplan</h2>
+            <p>Kompakte Übersicht für beide Tage</p>
+        </div>
+        <div class="schedule-grid fade-in">
+            <div class="schedule-day">
+                <div class="schedule-day-header">Dienstag, 05. August 2026</div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">11:00</span>
+                    <span class="schedule-desc">Start Zürich HB</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">13:00</span>
+                    <span class="schedule-desc">Rapperswil – Mittagspause</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">15:30</span>
+                    <span class="schedule-desc">Sargans – kurze Pause</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">16:30</span>
+                    <span class="schedule-desc">Chur – Kaffee</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">17:30</span>
+                    <span class="schedule-desc">Ankunft Thusis, Hotel Check-in</span>
+                </div>
+            </div>
+            <div class="schedule-day">
+                <div class="schedule-day-header">Mittwoch, 06. August 2026</div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">07:00</span>
+                    <span class="schedule-desc">Abfahrt Thusis</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">08:30</span>
+                    <span class="schedule-desc">Splügen – letzte Versorgung</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">11:00</span>
+                    <span class="schedule-desc">Gipfel San-Bernardino-Pass (2.065 m)</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">13:30</span>
+                    <span class="schedule-desc">Bellinzona – Mittagspause</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">16:30</span>
+                    <span class="schedule-desc">Ankunft Lugano!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links">
+        <a href="https://www.booking.com/searchresults.de.html?ss=Thusis&checkin=2026-08-05&checkout=2026-08-06&group_adults=1&no_rooms=1" target="_blank">Booking Thusis</a>
+        <a href="https://www.booking.com/searchresults.de.html?ss=Lugano&checkin=2026-08-06&checkout=2026-08-07&group_adults=1&no_rooms=1" target="_blank">Booking Lugano</a>
+        <a href="https://www.google.com/maps/dir/Zürich/Thusis/San+Bernardino+Pass/Bellinzona/Lugano" target="_blank">Google Maps Route</a>
+        <a href="https://www.schweizmobil.ch" target="_blank">SchweizMobil</a>
+        <a href="https://www.komoot.com/de-de/discover/san+bernardino+pass" target="_blank">Komoot</a>
+    </div>
+    <p>Rennradreise Zürich – San Bernardino – Lugano | 5.–7. August 2026</p>
+</footer>
+
+<script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
