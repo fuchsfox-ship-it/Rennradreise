@@ -1185,11 +1185,28 @@
         <div class="section-header fade-in">
             <div class="section-tag">Timing</div>
             <h2>Zeitplan</h2>
-            <p>Kompakte Übersicht für beide Tage</p>
+            <p>Anreise, Etappen und Rückreise im Überblick</p>
         </div>
-        <div class="schedule-grid fade-in">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 0 auto;" class="fade-in">
+            <!-- Anreise -->
             <div class="schedule-day">
-                <div class="schedule-day-header">Dienstag, 05. August 2026</div>
+                <div class="schedule-day-header" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); color: white; border: none;">Anreise – 05. August</div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">06:46</span>
+                    <span class="schedule-desc">An München Hbf</span>
+                </div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">08:01</span>
+                    <span class="schedule-desc">Ab Karlsruhe Hbf → Zürich</span>
+                </div>
+                <div class="schedule-entry" style="border-bottom: none; padding-top: 0.5rem;">
+                    <span class="schedule-time" style="color: var(--text-muted); font-size: 0.75rem;">~11:00</span>
+                    <span class="schedule-desc" style="font-weight: 600;">Ankunft Zürich HB → Start Rennrad</span>
+                </div>
+            </div>
+            <!-- Tag 1 -->
+            <div class="schedule-day">
+                <div class="schedule-day-header">Tag 1 – Dienstag, 05. August</div>
                 <div class="schedule-entry">
                     <span class="schedule-time">11:00</span>
                     <span class="schedule-desc">Start Zürich HB</span>
@@ -1208,11 +1225,12 @@
                 </div>
                 <div class="schedule-entry">
                     <span class="schedule-time">17:30</span>
-                    <span class="schedule-desc">Ankunft Thusis, Hotel Check-in</span>
+                    <span class="schedule-desc">Ankunft Thusis, Hotel Story</span>
                 </div>
             </div>
+            <!-- Tag 2 -->
             <div class="schedule-day">
-                <div class="schedule-day-header">Mittwoch, 06. August 2026</div>
+                <div class="schedule-day-header">Tag 2 – Mittwoch, 06. August</div>
                 <div class="schedule-entry">
                     <span class="schedule-time">07:00</span>
                     <span class="schedule-desc">Abfahrt Thusis</span>
@@ -1232,6 +1250,18 @@
                 <div class="schedule-entry">
                     <span class="schedule-time">16:30</span>
                     <span class="schedule-desc">Ankunft Lugano!</span>
+                </div>
+            </div>
+            <!-- Rückreise -->
+            <div class="schedule-day">
+                <div class="schedule-day-header" style="background: linear-gradient(135deg, var(--accent), #c0392b); color: white; border: none;">Rückreise – 07. August</div>
+                <div class="schedule-entry">
+                    <span class="schedule-time">09:58</span>
+                    <span class="schedule-desc">Ab Lugano → Basel</span>
+                </div>
+                <div class="schedule-entry" style="border-bottom: none; padding-top: 0.5rem;">
+                    <span class="schedule-time" style="color: var(--text-muted); font-size: 0.75rem;">~14:00</span>
+                    <span class="schedule-desc" style="font-weight: 600;">Ankunft Basel</span>
                 </div>
             </div>
         </div>
