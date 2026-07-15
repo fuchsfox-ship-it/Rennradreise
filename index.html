@@ -1393,6 +1393,18 @@
         `;
     }
 
+    async function fetchWithRetry(url, retries = 3) {
+        for (let i = 0; i < retries; i++) {
+            const res = await fetch(url);
+            if (res.ok) return res.json();
+            if (res.status === 429 && i < retries - 1) {
+                await new Promise(r => setTimeout(r, 1500 * (i + 1)));
+                continue;
+            }
+            if (!res.ok) throw new Error(`API error ${res.status}`);
+        }
+    }
+
     async function loadWeather() {
         const grid = document.getElementById('weather-grid');
         const sourceInfo = document.getElementById('weather-source-info');
@@ -1404,65 +1416,64 @@
         const useForecast = daysUntilTrip <= 16 && daysUntilTrip >= 0;
 
         try {
-            const results = await Promise.all(LOCATIONS.map(async (loc) => {
-                let url;
-                if (useForecast) {
-                    url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max,sunshine_duration&start_date=${TRIP_DATE_1}&end_date=${TRIP_DATE_2}&timezone=Europe/Zurich`;
-                } else {
-                    const startMd = loc.date.slice(5);
-                    const endMd = loc.date.slice(5);
-                    url = `https://climate-api.open-meteo.com/v1/climate?latitude=${loc.lat}&longitude=${loc.lon}&start_date=1991-${startMd}&end_date=2020-${endMd}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&models=EC_Earth3P_HR`;
-                }
+            const lats = LOCATIONS.map(l => l.lat).join(',');
+            const lons = LOCATIONS.map(l => l.lon).join(',');
+            let results;
 
-                const res = await fetch(url);
-                if (!res.ok) throw new Error(`API error ${res.status}`);
-                const json = await res.json();
-
-                if (useForecast) {
-                    const idx = json.daily.time.indexOf(loc.date);
-                    const i = idx >= 0 ? idx : 0;
+            if (useForecast) {
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lons}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max,sunshine_duration&start_date=${TRIP_DATE_1}&end_date=${TRIP_DATE_2}&timezone=Europe/Zurich`;
+                const json = await fetchWithRetry(url);
+                const dataArr = Array.isArray(json) ? json : [json];
+                results = LOCATIONS.map((loc, i) => {
+                    const d = dataArr[i].daily;
+                    const idx = d.time.indexOf(loc.date);
+                    const j = idx >= 0 ? idx : 0;
                     return {
-                        temp_max: json.daily.temperature_2m_max[i],
-                        temp_min: json.daily.temperature_2m_min[i],
-                        precipitation: json.daily.precipitation_sum[i],
-                        windspeed: json.daily.windspeed_10m_max[i],
-                        weathercode: json.daily.weathercode[i],
-                        sunshine: (json.daily.sunshine_duration[i] || 0) / 3600
+                        temp_max: d.temperature_2m_max[j],
+                        temp_min: d.temperature_2m_min[j],
+                        precipitation: d.precipitation_sum[j],
+                        windspeed: d.windspeed_10m_max[j],
+                        weathercode: d.weathercode[j],
+                        sunshine: (d.sunshine_duration[j] || 0) / 3600
                     };
-                } else {
-                    const temps_max = json.daily.temperature_2m_max;
-                    const temps_min = json.daily.temperature_2m_min;
-                    const precip = json.daily.precipitation_sum;
-                    const wind = json.daily.windspeed_10m_max;
-                    const avg = arr => arr.filter(v => v != null).reduce((a, b) => a + b, 0) / arr.filter(v => v != null).length;
+                });
+            } else {
+                const url = `https://historical-forecast-api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lons}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max,sunshine_duration&start_date=2024-08-05&end_date=2024-08-06&timezone=Europe/Zurich`;
+                const json = await fetchWithRetry(url);
+                const dataArr = Array.isArray(json) ? json : [json];
+                results = LOCATIONS.map((loc, i) => {
+                    const d = dataArr[i].daily;
+                    const dateKey = loc.date.replace('2026', '2024');
+                    const idx = d.time.indexOf(dateKey);
+                    const j = idx >= 0 ? idx : 0;
                     return {
-                        temp_max: avg(temps_max),
-                        temp_min: avg(temps_min),
-                        precipitation: avg(precip),
-                        windspeed: avg(wind),
-                        weathercode: avg(precip) > 3 ? 61 : avg(precip) > 1 ? 2 : 0,
-                        sunshine: loc.elev > 1500 ? 5.5 : 7.5
+                        temp_max: d.temperature_2m_max[j],
+                        temp_min: d.temperature_2m_min[j],
+                        precipitation: d.precipitation_sum[j],
+                        windspeed: d.windspeed_10m_max[j],
+                        weathercode: d.weathercode[j],
+                        sunshine: (d.sunshine_duration[j] || 0) / 3600
                     };
-                }
-            }));
+                });
+            }
 
             grid.innerHTML = LOCATIONS.map((loc, i) => renderWeatherCard(loc, results[i], useForecast)).join('');
 
             if (useForecast) {
-                sourceInfo.textContent = `Aktuelle Vorhersage für den 5.–6. August 2026 (Open-Meteo API)`;
+                sourceInfo.textContent = 'Aktuelle Vorhersage für den 5.–6. August 2026 (Open-Meteo API)';
                 noticeText.innerHTML = `
                     <strong style="font-size: 0.9rem;">Live-Vorhersage</strong>
                     <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Diese Daten stammen direkt von der <a href="https://open-meteo.com" target="_blank" style="color: var(--gradient-start); font-weight: 600;">Open-Meteo API</a> und werden bei jedem Laden der Seite aktualisiert. Auf dem Pass kann es auch im August kühl und windig sein — Windweste/Armlinge empfohlen!</p>
                 `;
             } else {
-                sourceInfo.textContent = `Klimatologische Mittelwerte (1991–2020) für Anfang August — Vorhersage verfügbar ab ${daysUntilTrip - 16 > 0 ? 'ca. ' + (daysUntilTrip - 16) + ' Tagen' : 'bald'}`;
+                sourceInfo.textContent = 'Referenzdaten vom 5.–6. August 2024 (gleicher Zeitraum Vorjahr) — Live-Vorhersage verfügbar ab ca. ' + (daysUntilTrip > 16 ? (daysUntilTrip - 16) + ' Tagen vor der Reise' : 'bald');
                 noticeText.innerHTML = `
-                    <strong style="font-size: 0.9rem;">Historische Klimadaten (Ø 1991–2020)</strong>
-                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Die Reise liegt noch zu weit in der Zukunft für eine Wettervorhersage. Sobald das Datum innerhalb von 16 Tagen liegt, zeigt diese Sektion automatisch die echte Prognose von <a href="https://open-meteo.com" target="_blank" style="color: var(--gradient-start); font-weight: 600;">Open-Meteo</a>. Auf dem Pass kann es auch im August kühl und windig sein — Windweste/Armlinge empfohlen!</p>
+                    <strong style="font-size: 0.9rem;">Wetterdaten vom Vorjahr (5.–6. Aug 2024)</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Da die Reise noch zu weit in der Zukunft liegt, zeigen wir das tatsächliche Wetter vom gleichen Datum 2024 als Referenz. Sobald das Reisedatum innerhalb von 16 Tagen liegt, wechselt diese Sektion automatisch zur echten Prognose von <a href="https://open-meteo.com" target="_blank" style="color: var(--gradient-start); font-weight: 600;">Open-Meteo</a>. Auf dem Pass kann es auch im August kühl und windig sein — Windweste/Armlinge empfohlen!</p>
                 `;
             }
         } catch (err) {
-            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text-muted);">Wetterdaten konnten nicht geladen werden. <br><small>${err.message}</small></div>`;
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text-muted);">Wetterdaten konnten nicht geladen werden.<br><small>${err.message}</small><br><br><button onclick="loadWeather()" style="padding: 0.5rem 1.5rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-alt); cursor: pointer; font-weight: 600;">Erneut versuchen</button></div>`;
             sourceInfo.textContent = 'Fehler beim Laden der Wetterdaten';
             noticeText.innerHTML = `<strong style="font-size: 0.9rem;">Fehler</strong><p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Bitte prüfe deine Internetverbindung und lade die Seite neu.</p>`;
         }
