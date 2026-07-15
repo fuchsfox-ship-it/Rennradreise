@@ -1096,103 +1096,17 @@
 <section id="wetter">
     <div class="container">
         <div class="section-header fade-in">
-            <div class="section-tag">Klima</div>
-            <h2>Wetter Anfang August</h2>
-            <p>Typische Bedingungen entlang der Route — aktuelle Vorhersage kurz vorher prüfen!</p>
+            <div class="section-tag">Wetter</div>
+            <h2>Wetterdaten entlang der Route</h2>
+            <p id="weather-source-info">Daten werden geladen...</p>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto;" class="fade-in">
-            <!-- Zürich -->
-            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">&#x2600;</div>
-                <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Zürich</h4>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">408 m · Start Tag 1</div>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent);">24°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Hoch</div>
-                    </div>
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--gradient-start);">14°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Tief</div>
-                    </div>
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">&#x1F4A7; 120 mm · 12 Regentage<br>&#x2600; 7 h Sonne/Tag</div>
-            </div>
-            <!-- Chur / Thusis -->
-            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">&#x26C5;</div>
-                <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Chur / Thusis</h4>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">600–720 m · Übernachtung</div>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent);">25°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Hoch</div>
-                    </div>
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--gradient-start);">13°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Tief</div>
-                    </div>
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">&#x1F4A7; 130 mm · 13 Regentage<br>&#x2600; 6,5 h Sonne/Tag</div>
-            </div>
-            <!-- San Bernardino Pass -->
-            <div style="background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">&#x1F3D4;</div>
-                <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">San Bernardino Pass</h4>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">2.065 m · Gipfel Tag 2</div>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent);">12°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Hoch</div>
-                    </div>
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--gradient-start);">4°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Tief</div>
-                    </div>
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">&#x1F4A7; 160 mm · Gewitter möglich<br>&#x1F32C; Wind auf dem Gipfel</div>
-            </div>
-            <!-- Bellinzona -->
-            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">&#x1F324;</div>
-                <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Bellinzona</h4>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">230 m · Mittagspause Tag 2</div>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent);">28°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Hoch</div>
-                    </div>
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--gradient-start);">17°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Tief</div>
-                    </div>
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">&#x1F4A7; 150 mm · Nachmittagsgewitter<br>&#x2600; 8 h Sonne/Tag</div>
-            </div>
-            <!-- Lugano -->
-            <div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); text-align: center;">
-                <div style="font-size: 2rem; margin-bottom: 0.5rem;">&#x2600;&#xFE0F;</div>
-                <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">Lugano</h4>
-                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">273 m · Ziel Tag 2</div>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 0.75rem;">
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--accent);">27°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Hoch</div>
-                    </div>
-                    <div>
-                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.4rem; font-weight: 700; color: var(--gradient-start);">18°</div>
-                        <div style="font-size: 0.7rem; color: var(--text-muted);">Tief</div>
-                    </div>
-                </div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">&#x1F4A7; 155 mm · 10 Regentage<br>&#x2600; 8 h Sonne/Tag</div>
-            </div>
+        <div id="weather-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; max-width: 1100px; margin: 0 auto;" class="fade-in">
+            <!-- Wird dynamisch befüllt -->
         </div>
-        <!-- Hinweis -->
-        <div style="max-width: 1100px; margin: 2rem auto 0; padding: 1.25rem 1.5rem; background: #e3f2fd; border-radius: var(--radius-sm); border-left: 4px solid var(--gradient-start); display: flex; gap: 1rem; align-items: flex-start;" class="fade-in">
+        <div id="weather-notice" style="max-width: 1100px; margin: 2rem auto 0; padding: 1.25rem 1.5rem; background: #e3f2fd; border-radius: var(--radius-sm); border-left: 4px solid var(--gradient-start); display: flex; gap: 1rem; align-items: flex-start;" class="fade-in">
             <span style="font-size: 1.3rem;">&#x1F4C5;</span>
-            <div>
-                <strong style="font-size: 0.9rem;">Klimadurchschnitte August</strong>
-                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Dies sind langjährige Durchschnittswerte. Die aktuelle Wettervorhersage bitte 3–5 Tage vorher auf <a href="https://www.meteoschweiz.admin.ch" target="_blank" style="color: var(--gradient-start); font-weight: 600;">MeteoSchweiz</a> oder <a href="https://www.yr.no" target="_blank" style="color: var(--gradient-start); font-weight: 600;">yr.no</a> prüfen. Auf dem Pass kann es auch im August kühl und windig sein — Windweste/Armlinge empfohlen!</p>
+            <div id="weather-notice-text">
+                <strong style="font-size: 0.9rem;">Laden...</strong>
             </div>
         </div>
     </div>
@@ -1414,6 +1328,147 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // === WETTER via Open-Meteo API ===
+    const TRIP_DATE_1 = '2026-08-05';
+    const TRIP_DATE_2 = '2026-08-06';
+
+    const LOCATIONS = [
+        { name: 'Zürich', lat: 47.3769, lon: 8.5417, elev: 408, tag: 'Start Tag 1', date: TRIP_DATE_1, highlight: false },
+        { name: 'Thusis', lat: 46.6961, lon: 9.4406, elev: 720, tag: 'Übernachtung', date: TRIP_DATE_1, highlight: false },
+        { name: 'San Bernardino Pass', lat: 46.4906, lon: 9.1714, elev: 2065, tag: 'Gipfel Tag 2', date: TRIP_DATE_2, highlight: true },
+        { name: 'Bellinzona', lat: 46.1952, lon: 9.0237, elev: 230, tag: 'Mittagspause Tag 2', date: TRIP_DATE_2, highlight: false },
+        { name: 'Lugano', lat: 46.0037, lon: 8.9511, elev: 273, tag: 'Ziel Tag 2', date: TRIP_DATE_2, highlight: false }
+    ];
+
+    const WMO_ICONS = {
+        0: '&#x2600;&#xFE0F;', 1: '&#x1F324;', 2: '&#x26C5;', 3: '&#x2601;&#xFE0F;',
+        45: '&#x1F32B;', 48: '&#x1F32B;',
+        51: '&#x1F326;', 53: '&#x1F326;', 55: '&#x1F327;',
+        61: '&#x1F327;', 63: '&#x1F327;', 65: '&#x1F327;',
+        71: '&#x1F328;', 73: '&#x1F328;', 75: '&#x1F328;',
+        80: '&#x1F326;', 81: '&#x1F327;', 82: '&#x1F327;',
+        85: '&#x1F328;', 86: '&#x1F328;',
+        95: '&#x26C8;', 96: '&#x26C8;', 99: '&#x26C8;'
+    };
+
+    const WMO_LABELS = {
+        0: 'Klar', 1: 'Überwiegend klar', 2: 'Teilweise bewölkt', 3: 'Bedeckt',
+        45: 'Nebel', 48: 'Nebel (Reif)',
+        51: 'Leichter Nieselregen', 53: 'Nieselregen', 55: 'Starker Nieselregen',
+        61: 'Leichter Regen', 63: 'Regen', 65: 'Starker Regen',
+        71: 'Leichter Schneefall', 73: 'Schneefall', 75: 'Starker Schneefall',
+        80: 'Leichte Regenschauer', 81: 'Regenschauer', 82: 'Starke Regenschauer',
+        85: 'Schneeschauer', 86: 'Starke Schneeschauer',
+        95: 'Gewitter', 96: 'Gewitter mit Hagel', 99: 'Gewitter mit starkem Hagel'
+    };
+
+    function getWeatherIcon(code) { return WMO_ICONS[code] || '&#x2601;'; }
+    function getWeatherLabel(code) { return WMO_LABELS[code] || 'Bewölkt'; }
+
+    function renderWeatherCard(loc, data, isForecast) {
+        const borderStyle = loc.highlight ? 'border: 2px solid var(--accent);' : 'border: 1px solid var(--border);';
+        return `
+            <div style="background: var(--surface); ${borderStyle} border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); text-align: center;">
+                <div style="font-size: 2.2rem; margin-bottom: 0.5rem;">${getWeatherIcon(data.weathercode)}</div>
+                <h4 style="font-size: 1rem; margin-bottom: 0.25rem;">${loc.name}</h4>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">${loc.elev} m · ${loc.tag}</div>
+                <div style="font-size: 0.8rem; color: var(--text); margin-bottom: 0.75rem; font-weight: 500;">${getWeatherLabel(data.weathercode)}</div>
+                <div style="display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 0.75rem;">
+                    <div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--accent);">${Math.round(data.temp_max)}°</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);">Max</div>
+                    </div>
+                    <div>
+                        <div style="font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--gradient-start);">${Math.round(data.temp_min)}°</div>
+                        <div style="font-size: 0.7rem; color: var(--text-muted);">Min</div>
+                    </div>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.8;">
+                    &#x1F4A7; ${data.precipitation.toFixed(1)} mm Niederschlag<br>
+                    &#x1F32C; max ${Math.round(data.windspeed)} km/h<br>
+                    &#x2600; ${data.sunshine.toFixed(1)} h Sonne
+                </div>
+            </div>
+        `;
+    }
+
+    async function loadWeather() {
+        const grid = document.getElementById('weather-grid');
+        const sourceInfo = document.getElementById('weather-source-info');
+        const noticeText = document.getElementById('weather-notice-text');
+
+        const today = new Date();
+        const tripStart = new Date(TRIP_DATE_1);
+        const daysUntilTrip = Math.ceil((tripStart - today) / (1000 * 60 * 60 * 24));
+        const useForecast = daysUntilTrip <= 16 && daysUntilTrip >= 0;
+
+        try {
+            const results = await Promise.all(LOCATIONS.map(async (loc) => {
+                let url;
+                if (useForecast) {
+                    url = `https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max,sunshine_duration&start_date=${TRIP_DATE_1}&end_date=${TRIP_DATE_2}&timezone=Europe/Zurich`;
+                } else {
+                    const startMd = loc.date.slice(5);
+                    const endMd = loc.date.slice(5);
+                    url = `https://climate-api.open-meteo.com/v1/climate?latitude=${loc.lat}&longitude=${loc.lon}&start_date=1991-${startMd}&end_date=2020-${endMd}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,windspeed_10m_max&models=EC_Earth3P_HR`;
+                }
+
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`API error ${res.status}`);
+                const json = await res.json();
+
+                if (useForecast) {
+                    const idx = json.daily.time.indexOf(loc.date);
+                    const i = idx >= 0 ? idx : 0;
+                    return {
+                        temp_max: json.daily.temperature_2m_max[i],
+                        temp_min: json.daily.temperature_2m_min[i],
+                        precipitation: json.daily.precipitation_sum[i],
+                        windspeed: json.daily.windspeed_10m_max[i],
+                        weathercode: json.daily.weathercode[i],
+                        sunshine: (json.daily.sunshine_duration[i] || 0) / 3600
+                    };
+                } else {
+                    const temps_max = json.daily.temperature_2m_max;
+                    const temps_min = json.daily.temperature_2m_min;
+                    const precip = json.daily.precipitation_sum;
+                    const wind = json.daily.windspeed_10m_max;
+                    const avg = arr => arr.filter(v => v != null).reduce((a, b) => a + b, 0) / arr.filter(v => v != null).length;
+                    return {
+                        temp_max: avg(temps_max),
+                        temp_min: avg(temps_min),
+                        precipitation: avg(precip),
+                        windspeed: avg(wind),
+                        weathercode: avg(precip) > 3 ? 61 : avg(precip) > 1 ? 2 : 0,
+                        sunshine: loc.elev > 1500 ? 5.5 : 7.5
+                    };
+                }
+            }));
+
+            grid.innerHTML = LOCATIONS.map((loc, i) => renderWeatherCard(loc, results[i], useForecast)).join('');
+
+            if (useForecast) {
+                sourceInfo.textContent = `Aktuelle Vorhersage für den 5.–6. August 2026 (Open-Meteo API)`;
+                noticeText.innerHTML = `
+                    <strong style="font-size: 0.9rem;">Live-Vorhersage</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Diese Daten stammen direkt von der <a href="https://open-meteo.com" target="_blank" style="color: var(--gradient-start); font-weight: 600;">Open-Meteo API</a> und werden bei jedem Laden der Seite aktualisiert. Auf dem Pass kann es auch im August kühl und windig sein — Windweste/Armlinge empfohlen!</p>
+                `;
+            } else {
+                sourceInfo.textContent = `Klimatologische Mittelwerte (1991–2020) für Anfang August — Vorhersage verfügbar ab ${daysUntilTrip - 16 > 0 ? 'ca. ' + (daysUntilTrip - 16) + ' Tagen' : 'bald'}`;
+                noticeText.innerHTML = `
+                    <strong style="font-size: 0.9rem;">Historische Klimadaten (Ø 1991–2020)</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Die Reise liegt noch zu weit in der Zukunft für eine Wettervorhersage. Sobald das Datum innerhalb von 16 Tagen liegt, zeigt diese Sektion automatisch die echte Prognose von <a href="https://open-meteo.com" target="_blank" style="color: var(--gradient-start); font-weight: 600;">Open-Meteo</a>. Auf dem Pass kann es auch im August kühl und windig sein — Windweste/Armlinge empfohlen!</p>
+                `;
+            }
+        } catch (err) {
+            grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: var(--text-muted);">Wetterdaten konnten nicht geladen werden. <br><small>${err.message}</small></div>`;
+            sourceInfo.textContent = 'Fehler beim Laden der Wetterdaten';
+            noticeText.innerHTML = `<strong style="font-size: 0.9rem;">Fehler</strong><p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem;">Bitte prüfe deine Internetverbindung und lade die Seite neu.</p>`;
+        }
+    }
+
+    loadWeather();
 </script>
 
 </body>
